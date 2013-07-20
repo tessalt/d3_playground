@@ -10,6 +10,7 @@
     width: 20px;
     height: 75px;   /* We'll override this later */
     background-color: teal;
+    margin-right: 2px;
 	}
 	</style>
 </head>
@@ -22,15 +23,10 @@
 		.data(dataset)
 		.enter()
 		.append("div")
-		.text(function(d) { 
-			return d; 
-		}).
-		style("color", function(d){
-			if (d > 15) {
-				return "red";
-			} else {
-				return "black;"
-			}
+		.attr("class", "bar")
+		.style("height", function(d){
+			var bh = d *5;
+			return bh + "px";
 		});
 
 </script>
