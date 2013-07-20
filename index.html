@@ -4,18 +4,33 @@
 	<meta charset="utf-8">
 	<title>d3 Learnings</title>
 	<script src="d3.v3/d3.v3.js"></script>
+	<style>
+	.bar {
+    display: inline-block;
+    width: 20px;
+    height: 75px;   /* We'll override this later */
+    background-color: teal;
+	}
+	</style>
 </head>
 <body>
 
 <script type="text/javascript">
 	var dataset = [ 5, 10, 15, 20, 25 ];
 
-	d3.select("body").selectAll("p")
+	d3.select("body").selectAll("div")
 		.data(dataset)
 		.enter()
-		.append("p")
+		.append("div")
 		.text(function(d) { 
 			return d; 
+		}).
+		style("color", function(d){
+			if (d > 15) {
+				return "red";
+			} else {
+				return "black;"
+			}
 		});
 
 </script>
