@@ -21,16 +21,29 @@
                 14, 11, 22, 29, 11, 13, 12, 17, 18, 10,
                 24, 18, 25, 9, 3 ];
 
-	d3.select("body").selectAll("div")
-		.data(dataset)
-		.enter()
-		.append("div")
-		.attr("class", "bar")
-		.style("height", function(d){
-			var bh = d *5;
-			return bh + "px";
-		});
+	var svg = d3.select("body")
+            .append("svg")
+            .attr("width", 500)
+            .attr("height", 100);
 
+  var circles = svg.selectAll("circle")
+  	.data(dataset)
+  	.enter()
+  	.append("circle");
+
+  	circles.attr("cx", function(d, i) {
+            return (i * 50) + 25;
+        })
+       .attr("cy", 50)
+       .attr("r", function(d) {
+            return d;
+       })
+       .attr("fill", "yellow")
+				.attr("stroke", "orange")
+				.attr("stroke-width", function(d) {
+				    return d/2;
+				});
+;
 </script>
 </body>
 </html>
