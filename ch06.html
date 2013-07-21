@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>d3 Learnings</title>
+  <script src="d3.v3/d3.v3.js"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+  var w = 500;
+  var h = 300;
+  var padding = 1;
+
+  var dataset = [7.1,8.0,8.4,7.5,7.5,7.6,11.0,12.0,11.3,10.5,9.6,8.8,7.8,7.5,8.1,10.3,11.2,11.4,10.4,9.5,9.6,9.1,8.3,7.6,6.8,7.2,7.7,7.6,7.2,6.8,6.3,6.0,6.1,8.3,8.0,7.4,7.2];
+
+  var svg = d3.select("body")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h);
+
+  svg.selectAll("rect")
+    .data(dataset)
+    .enter()
+    .append("rect")
+    .attr("x", function(d,i){
+      return i * w/dataset.length + 5;
+    })
+    .attr("y", 0)
+    .attr("width", w/dataset.length)
+    .attr("height", 100);
+
+</script>
+</body>
+</html>
