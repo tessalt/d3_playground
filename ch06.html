@@ -12,11 +12,15 @@
 
 <script type="text/javascript">
 
-  var w = 500;
-  var h = 300;
+  var w = 700;
+  var h = 200;
   var padding = 1;
 
   var dataset = [7.1,8.0,8.4,7.5,7.5,7.6,11.0,12.0,11.3,10.5,9.6,8.8,7.8,7.5,8.1,10.3,11.2,11.4,10.4,9.5,9.6,9.1,8.3,7.6,6.8,7.2,7.7,7.6,7.2,6.8,6.3,6.0,6.1,8.3,8.0,7.4,7.2];
+
+  var xScale = d3.scale.linear()
+    .domain([0,d3.max(dataset, function(d){return d;})])
+    .range([0, h]);
 
   var svg = d3.select("body")
     .append("svg")
@@ -28,11 +32,15 @@
     .enter()
     .append("rect")
     .attr("x", function(d,i){
-      return i * w/dataset.length + 5;
+      return i * (w/dataset.length);
     })
-    .attr("y", 0)
-    .attr("width", w/dataset.length)
-    .attr("height", 100);
+    .attr("y", function(d){
+      return h - xScale(d);
+    })
+    .attr("width", (w/dataset.length -2))
+    .attr("height", function(d){
+      return xScale(d);
+    });
 
 </script>
 </body>
