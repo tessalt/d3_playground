@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+</style>
+<body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+<script src="d3.v3/d3.v3.js"></script>
+<script>
+
+  var dataset = [];
+
+  function loadData(dfdLoadData) {
+    d3.tsv("data.tsv", function(error, data){
+      data.forEach(function(d){
+        dataset += "[" + d.date + "," + d.age + "]";
+      });
+      dfdLoadData.resolve();
+    });
+    return dataset;
+  }
+
+  var dfdLoadData = new $.Deferred();
+
+  var width = 960;
+  var height = 500;
+
+  var parseDate = d3.time.format("%Y").parse;
+
+  var svg = d3.select("body").append("svg")
+  .attr("width", width)
+  .attr("height", height);
+
+
+  loadData(dfdLoadData);
+
+  dfdLoadData.done(function(){
+    
+    var line = d3.svg.line()
+      .x(function(d) { return x(d.date); })
+      .y(function(d) { return y(d.age); });
+
+    svg.append("path")
+      .datum(dataset)
+      .attr("class", "line")
+      .attr("d", line);
+  });
+
+</script>
