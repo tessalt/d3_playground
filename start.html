@@ -5,7 +5,12 @@
 	<title>d3 Learnings</title>
 	<script src="d3.v3/d3.v3.js"></script>
 	<style>
-
+path {
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+ 
 	</style>
 </head>
 <body>
@@ -13,16 +18,33 @@
 
 <script type="text/javascript">
 
-var data = [3, 6, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 7],
-w = 400,
-h = 200,
-margin = 20,
-yScale = d3.scale.linear().domain([0, d3.max(data)]).range([0 + margin, h - margin]),
-xScale = d3.scale.linear().domain([0, data.length]).range([0 + margin, w - margin])
+var data = [[2000, 2], [2001, 3], [2002, 5], [2003, 8], [2004, 12]];
+var w = 400,
+    h = 200,
+    margin = 10
 
-var svg = d3.select("body").append("svg").attr("width", w).attr("height", h);
+var yScale = d3.scale.linear()
+  .domain([0, d3.max(data.map(function(d) { return d[1]; }))])
+  .range([0 + margin, h - margin]);
 
-var g = svg.append("g").attr("transform", "translate(0, 200)");
+var xScale = d3.scale.linear()
+  .domain([d3.min(data.map(function(d) { return d[0]; })), d3.max(data.map(function(d) { return d[0]; }))])
+  .range([0 + margin, w - margin]);
+
+var svg = d3.select("body")
+  .append("svg")
+  .attr("width", w)
+  .attr("height", h);
+
+var g = svg.append("g")
+  .attr("transform", "translate(0, 200)");
+
+var line = d3.svg.line()
+  .x(function(d, i){return xScale(d[0]);})
+  .y(function(d){return -1 * yScale(d[1]);})
+
+g.append("path")
+  .attr("d", line(data));
 
 </script>
 </body>
