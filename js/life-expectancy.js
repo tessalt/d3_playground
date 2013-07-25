@@ -41,15 +41,15 @@ d3.tsv("data/life-expectancy.tsv", function(error, data){
       usG = svg.append("g");
 
   var canLine = d3.svg.line()
-    .x(function(d, i){return xScale(d.date);})
+    .x(function(d){return xScale(d.date);})
     .y(function(d){return 1 * yScale(d.canada);})
 
   var ausLine = d3.svg.line()
-    .x(function(d, i){return xScale(d.date);})
+    .x(function(d){return xScale(d.date);})
     .y(function(d){return 1 * yScale(d.australia);})
 
   var usLine = d3.svg.line()
-    .x(function(d, i){return xScale(d.date);})
+    .x(function(d){return xScale(d.date);})
     .y(function(d){return 1 * yScale(d.us);})
 
   canG.append("path")
