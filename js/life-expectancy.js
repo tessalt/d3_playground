@@ -4,15 +4,17 @@ var w = 800,
 
 var parseDate = d3.time.format("%Y").parse;
 
-d3.tsv("data/data.tsv", function(error, data){
+d3.tsv("data/life-expectancy.tsv", function(error, data){
  
   data.forEach(function(d){
-    d.date = parseDate(d.date);
-    d.age = d.age;
+    d.date = parseDate(d.year);
+    d.canada = d.canada;
+    d.australia = d.australia;
+    d.us = d.us;
   });
 
   var yScale = d3.scale.linear()
-    .domain([d3.max(data.map(function(d) { return d.age; })), d3.min(data.map(function(d) { return d.age; }))])
+    .domain([d3.max(data.map(function(d) { return d.australia; })), d3.min(data.map(function(d) { return d.us; }))])
     .range([0 + margin, h - margin]);
 
   var xScale = d3.time.scale()
@@ -34,14 +36,33 @@ d3.tsv("data/data.tsv", function(error, data){
     .attr("width", w)
     .attr("height", h);
 
-  var g = svg.append("g");
+  var canG = svg.append("g"),
+      ausG = svg.append("g"),
+      usG = svg.append("g");
 
-  var line = d3.svg.line()
+  var canLine = d3.svg.line()
     .x(function(d, i){return xScale(d.date);})
-    .y(function(d){return 1 * yScale(d.age);})
+    .y(function(d){return 1 * yScale(d.canada);})
 
-  g.append("path")
-    .attr("d", line(data));
+  var ausLine = d3.svg.line()
+    .x(function(d, i){return xScale(d.date);})
+    .y(function(d){return 1 * yScale(d.australia);})
+
+  var usLine = d3.svg.line()
+    .x(function(d, i){return xScale(d.date);})
+    .y(function(d){return 1 * yScale(d.us);})
+
+  canG.append("path")
+    .attr("class", "can")
+    .attr("d", canLine(data));
+
+  ausG.append("path")
+    .attr("class", "aus")
+    .attr("d", ausLine(data));
+
+  usG.append("path")
+    .attr("class", "usa")
+    .attr("d", usLine(data));
 
   svg.append("g")
     .attr("transform", "translate(" + margin + ",0)")

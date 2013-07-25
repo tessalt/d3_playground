@@ -7,3 +7,15 @@ body {
   font-family: sans-serif;
   font-size: 10px;
 }
+
+.can {
+	stroke: red;
+}
+
+.aus {
+	stroke: green;
+}
+
+.usa {
+	stroke: blue;
+}
