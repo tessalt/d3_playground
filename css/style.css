@@ -1,21 +1,50 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  background: #253443;
+  color: #ecf0f1;
+}
+
+h1 {
+	margin: 1em 0 0 0;
+	font-weight: normal;
+}
+
+.container {
+	text-align: center;
+}
+
 path {
-  stroke: steelblue;
-  stroke-width: 2;
   fill: none;
 }
-body {
-  font-family: sans-serif;
-  font-size: 10px;
+
+
+.plot {
+	stroke-width: 2;
+}
+
+.axis {
+	stroke-width: 0;
+	stroke: #444;
+}
+
+.axis text {
+	color: #ecf0f1;
+}
+
+.axis line {
+	stroke-width: 1;
+	stroke: rgba(236, 240, 241,0.1);
 }
 
 .can {
-	stroke: red;
+	stroke: #e74c3c;
 }
 
 .aus {
-	stroke: green;
+	stroke: #1abc9c;
 }
 
 .usa {
-	stroke: blue;
+	stroke: #2980b9;
 }
