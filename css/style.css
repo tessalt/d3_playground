@@ -80,9 +80,20 @@ footer li {
 	font-size: 12px;
 }
 
+.graph header {
+	padding: 0 100px 0 50px;
+	overflow: hidden;
+}
+
 .graph h1 {
 	margin-bottom: 0;
-	text-align: center;
+	float: left;
+	margin-top: 0;
+}
+
+.back {
+	display: block;
+	float: right;
 }
 
 .legend {
