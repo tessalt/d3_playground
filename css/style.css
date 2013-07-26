@@ -33,9 +33,7 @@ header {
 	margin: 40px 0 0 0;
 }
 
-header a, footer a {
-	font-size: 14px;
-}
+
 
 footer li {
 	display: inline-block;
@@ -72,6 +70,10 @@ footer li {
 	vertical-align: top;
 	padding-top: 5px;
 	padding-left: 15px;
+}
+
+.main {
+	overflow: hidden;
 }
 
 .graph {
@@ -117,6 +119,11 @@ footer li {
 	position: absolute;
 	left: 0;
 	top: 2px;
+}
+
+.source {
+	padding-left: 50px;
+	font-size: 12px;
 }
 
 .country path {

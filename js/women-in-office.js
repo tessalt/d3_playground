@@ -3,7 +3,7 @@ var viewportWidth  = $(".graph").width(),
     viewportHeight = document.documentElement.clientHeight,
     margin = 50,
     w = viewportWidth - margin,
-    h = viewportHeight - margin*2;
+    h = viewportHeight - margin*3;
 
 // create svg element
 var svg = d3.select(".graph")
