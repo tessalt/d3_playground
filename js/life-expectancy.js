@@ -3,7 +3,7 @@ var viewportWidth  = $(".graph").width(),
     viewportHeight = document.documentElement.clientHeight,
     margin = 50,
     w = viewportWidth - margin,
-    h = viewportHeight - margin;
+    h = viewportHeight - margin*2;
 
 // create svg element
 var svg = d3.select(".graph")
@@ -43,7 +43,7 @@ var line = d3.svg.line()
 var parseDate = d3.time.format("%Y").parse;
 
 // load and parse data
-d3.tsv("data/life-expectancy.tsv", function(error, data){
+d3.tsv("../data/life-expectancy.tsv", function(error, data){
   
   // set domain for color scale based on values for countries
   colorScale.domain(d3.keys(data[0]).filter(function(key) { return key !== "year"; }));

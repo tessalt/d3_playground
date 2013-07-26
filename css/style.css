@@ -1,27 +1,96 @@
+* {
+	box-sizing: border-box;
+}
+
 body {
-  font-family: 'Helvetica', sans-serif;
-  font-size: 12px;
-  background: #122435;
+  font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
+  background: #002B36;
   color: #ecf0f1;
+}
+
+a {
+	color: #bdc3c7;
+}
+
+ul {
+	padding-left: 0;
+	list-style: none;
+}
+
+h1 {
+	font-size: 24px;
+	font-weight: normal;
 }
 
 h2 {
 	font-size: 16px;
 	margin-bottom: 0;
+	padding-top: 30px;
 	font-weight: normal;
-	color: #90A0A1;
+}
+
+header {
+	margin: 40px 0 0 0;
+}
+
+header a, footer a {
+	font-size: 14px;
+}
+
+footer li {
+	display: inline-block;
+	padding-right: 20px;
+}
+
+.container {
+	width: 80%;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.index {
+	margin: 60px 0;
+	border-bottom: 1px solid rgb(52, 73, 94);
+}
+
+.index a {
+	text-decoration: none;
+	padding: 20px 0;
+	display: block;
+	border-top: 1px solid rgb(52, 73, 94);
+	color: #ecf0f1;
+	overflow: hidden;
+}
+
+.index img {
+	border: 1px solid #67737d;
+	display: inline-block;
+}
+
+.index span {
+	display: inline-block;
+	vertical-align: top;
+	padding-top: 5px;
+	padding-left: 15px;
 }
 
 .graph {
-	text-align: center;
-	width: 90%;
+	width: 85%;
 	float: left;
+	font-size: 12px;
+}
+
+.graph h1 {
+	margin-bottom: 0;
+	text-align: center;
 }
 
 .legend {
-	width: 10%;
+	width: 15%;
 	float: left;
-	padding-top: 65px;
+	padding: 110px 20px 0  0 ;
+	font-size: 12px;
+	line-height: 1.4;
 }
 
 .legend p {
@@ -40,6 +109,7 @@ h2 {
 
 .country path {
 	fill: none;
+	stroke-width: 2;
 }
 
 .axis path {
