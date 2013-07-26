@@ -1,12 +1,12 @@
 // sizing vars
-var viewportWidth  = document.documentElement.clientWidth, 
+var viewportWidth  = $(".graph").width(), 
     viewportHeight = document.documentElement.clientHeight,
     margin = 50,
     w = viewportWidth - margin,
     h = viewportHeight - margin;
 
 // create svg element
-var svg = d3.select(".container")
+var svg = d3.select(".graph")
   .append("svg")
   .attr("width", w)
   .attr("height", h);
@@ -76,8 +76,6 @@ d3.tsv("data/life-expectancy.tsv", function(error, data){
   xScale.domain(
     d3.extent(data, function(d) { return d.date; })
   );
-
-  console.log(d3.extent(data, function(d) { return d.date; }));
   
   // create y axis
   svg.append("g")
@@ -91,12 +89,22 @@ d3.tsv("data/life-expectancy.tsv", function(error, data){
     .call(xAxis)
     .attr("transform", "translate(0," + (h - margin) + ")");
 
+  var legend = d3.select(".legend");
+
   // create paths for countries
   var country = svg.selectAll(".country")
     .data(countries)
     .enter()
     .append("g")
     .attr("class", "country");
+
+  var countryLegend = legend.selectAll(".countryLegend")
+    .data(countries)
+    .enter()
+    .append("p")
+    .text(function(d){return d.name})    
+    .append("span")
+    .style("background-color", function(d){return colorScale(d.name)});
 
   // plot paths to data, style paths with colour scale
   country.append("path")

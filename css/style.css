@@ -1,5 +1,5 @@
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Helvetica', sans-serif;
   font-size: 12px;
   background: #122435;
   color: #ecf0f1;
@@ -12,8 +12,31 @@ h2 {
 	color: #90A0A1;
 }
 
-.container {
+.graph {
 	text-align: center;
+	width: 90%;
+	float: left;
+}
+
+.legend {
+/*	background: #ecf0f1;
+*/	width: 10%;
+	float: left;
+	padding-top: 65px;
+}
+
+.legend p {
+	position: relative;
+	padding-left: 20px;
+}
+
+.legend span {
+	display: block;
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	left: 0;
+	top: 2px;
 }
 
 .country path {
