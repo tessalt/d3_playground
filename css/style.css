@@ -5,46 +5,24 @@ body {
   color: #ecf0f1;
 }
 
-h1 {
-	margin: 1em 0 0 0;
-	font-weight: normal;
-}
-
 .container {
 	text-align: center;
 }
 
-path {
-  fill: none;
+.country path {
+	fill: none;
 }
 
-
-.plot {
-	stroke-width: 2;
-}
-
-.axis {
-	stroke-width: 0;
-	stroke: #444;
-}
-
-.axis text {
-	color: #ecf0f1;
-}
-
-.axis line {
+.axis path {
+	stroke: #bdc3c7;
 	stroke-width: 1;
-	stroke: rgba(236, 240, 241,0.1);
+	fill: none;
 }
 
-.can {
-	stroke: #e74c3c;
+.tick {
+	fill: rgba(127, 140, 141, 0.7);
 }
 
-.aus {
-	stroke: #1abc9c;
-}
-
-.usa {
-	stroke: #2980b9;
+.tick line {
+	stroke: rgba(52, 73, 94, 0.5);
 }

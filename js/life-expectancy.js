@@ -1,9 +1,9 @@
 // sizing vars
 var viewportWidth  = document.documentElement.clientWidth, 
     viewportHeight = document.documentElement.clientHeight,
-    w = viewportWidth,
-    h = viewportHeight - 100,
-    margin = 50;
+    margin = 50,
+    w = viewportWidth - margin,
+    h = viewportHeight - margin;
 
 // create svg element
 var svg = d3.select(".container")
@@ -23,7 +23,9 @@ var yScale = d3.scale.linear()
 // set axes
 var xAxis = d3.svg.axis()
   .scale(xScale)
-  .orient("bottom");
+  .orient("bottom")  
+  .tickPadding(margin / 4)
+  .tickSize(-h  + margin * 2, 0);
 
 var yAxis = d3.svg.axis()
   .scale(yScale)
@@ -61,16 +63,21 @@ d3.tsv("data/life-expectancy.tsv", function(error, data){
     };
   });
 
+  var max = d3.max(countries, function(c) { return d3.max(c.values, function(v) { return v.age; }); });
+  var min = d3.min(countries, function(c) { return d3.min(c.values, function(v) { return v.age; }); });
+  
+  max = Math.ceil(max);
+  min = Math.floor(min);
+
   // set y scale domain based on range of ages
-  yScale.domain([
-    d3.max(countries, function(c) { return d3.max(c.values, function(v) { return v.age; }); }),
-     d3.min(countries, function(c) { return d3.min(c.values, function(v) { return v.age; }); }) 
-  ]);
+  yScale.domain([max, min]);
 
   // set x scale domain based on rage of years
   xScale.domain(
     d3.extent(data, function(d) { return d.date; })
   );
+
+  console.log(d3.extent(data, function(d) { return d.date; }));
   
   // create y axis
   svg.append("g")
@@ -94,12 +101,7 @@ d3.tsv("data/life-expectancy.tsv", function(error, data){
   // plot paths to data, style paths with colour scale
   country.append("path")
     .attr("class", "line")
-    .attr("d", function(d){
-      return line(d.values);
-    })
-    .style("stroke", function(d){
-      return colorScale(d.name);
-    });
-
+    .attr("d", function(d){return line(d.values); })
+    .style("stroke", function(d){return colorScale(d.name); });
 
 });
